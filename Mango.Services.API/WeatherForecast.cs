@@ -1,4 +1,4 @@
-namespace Mango.Services.API
+namespace Mango.Services.ProductAPI
 {
     public class WeatherForecast
     {
