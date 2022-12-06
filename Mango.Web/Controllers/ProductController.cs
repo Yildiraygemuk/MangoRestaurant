@@ -1,5 +1,6 @@
 ﻿using Mango.Web.Models;
 using Mango.Web.Services.IServices;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -23,5 +24,24 @@ namespace Mango.Web.Controllers
                 list = JsonConvert.DeserializeObject<List<ProductDto>>(Convert.ToString(response.Result));
             return View(list);
         }
-    }
+
+		public async Task<IActionResult> ProductCreate()
+		{
+			return View();
+		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> ProductCreate(ProductDto model)
+		{
+			if (ModelState.IsValid)
+			{
+				var response = await _productService.CreateProductAsync<ResponseDto>(model);
+				if (response != null && response.IsSuccess)
+				{
+					return RedirectToAction(nameof(ProductIndex));
+				}
+			}
+			return View(model);
+		}
+	}
 }
