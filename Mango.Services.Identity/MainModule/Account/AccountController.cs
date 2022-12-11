@@ -240,9 +240,7 @@ namespace IdentityServerHost.Quickstart.UI
                 {
                     UserName = model.Username,
                     Email = model.Email,
-                    EmailConfirmed = true,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName
+                    EmailConfirmed = true
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
