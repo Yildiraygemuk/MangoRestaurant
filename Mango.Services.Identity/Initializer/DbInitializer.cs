@@ -35,7 +35,7 @@ namespace Mango.Services.Identity.Initializer
                 FirstName = "Yildiray",
                 LastName = "Admin"
             };
-            _userManager.CreateAsync(adminUser, "Admin123*").GetAwaiter().GetResult();
+            _userManager.CreateAsync(adminUser, "Admin123*1").GetAwaiter().GetResult();
             _userManager.AddToRoleAsync(adminUser, SD.Admin).GetAwaiter().GetResult();
             var temp1 = _userManager.AddClaimsAsync(adminUser, new Claim[]
             {
